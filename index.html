@@ -474,13 +474,14 @@
   </div>
   <div class="reg-table">
     <div class="reg-header"><span>DÍA</span><span style="text-align:center">FATIGA<br>1–10</span><span style="text-align:center;padding-left:6px">BLOQUE MAYOR FATIGA</span><span style="text-align:center">MOTIV.<br>1–10</span></div>
-    <div class="reg-row"><div class="reg-day">Lunes</div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
-    <div class="reg-row"><div class="reg-day">Martes</div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
-    <div class="reg-row"><div class="reg-day">Miércoles</div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
-    <div class="reg-row"><div class="reg-day">Jueves</div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
-    <div class="reg-row"><div class="reg-day">Viernes</div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
+    <div class="reg-row"><div class="reg-day">Lunes</div><div style="text-align:center"><input id="fatiga-lun" class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input id="bloque-lun" class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input id="motiv-lun" class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
+    <div class="reg-row"><div class="reg-day">Martes</div><div style="text-align:center"><input id="fatiga-mar" class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input id="bloque-mar" class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input id="motiv-mar" class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
+    <div class="reg-row"><div class="reg-day">Miércoles</div><div style="text-align:center"><input id="fatiga-mie" class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input id="bloque-mie" class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input id="motiv-mie" class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
+    <div class="reg-row"><div class="reg-day">Jueves</div><div style="text-align:center"><input id="fatiga-jue" class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input id="bloque-jue" class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input id="motiv-jue" class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
+    <div class="reg-row"><div class="reg-day">Viernes</div><div style="text-align:center"><input id="fatiga-vie" class="reg-input" type="number" min="1" max="10" placeholder="–"></div><div style="padding:0 6px"><input id="bloque-vie" class="reg-bloque" type="text" placeholder="ej. A, B, C…"></div><div style="text-align:center"><input id="motiv-vie" class="reg-input" type="number" min="1" max="10" placeholder="–"></div></div>
   </div>
-  <div style="margin-top:10px;font-size:11px;color:#555;font-family:'Barlow',sans-serif;line-height:1.6">⚠️ Los datos se guardan solo durante esta sesión. Toma captura al terminar el día.</div>
+  <button onclick="enviarRegistro()" style="margin-top:14px;width:100%;background:#e63030;color:#fff;border:none;padding:13px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">ENVIAR REGISTRO AL ENTRENADOR</button>
+  <div style="margin-top:8px;font-size:11px;color:#555;font-family:'Barlow',sans-serif;line-height:1.6">Abre tu app de correo con los datos listos para enviar a liftflow360@gmail.com</div>
 </div>
 
 <!-- FOOTER -->
@@ -495,6 +496,24 @@ function showDay(idx,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('day-'+idx).classList.add('active');
   btn.classList.add('active');
+}
+function enviarRegistro(){
+  var dias=[
+    {nom:'Lunes',    f:'fatiga-lun',b:'bloque-lun',m:'motiv-lun'},
+    {nom:'Martes',   f:'fatiga-mar',b:'bloque-mar',m:'motiv-mar'},
+    {nom:'Miércoles',f:'fatiga-mie',b:'bloque-mie',m:'motiv-mie'},
+    {nom:'Jueves',   f:'fatiga-jue',b:'bloque-jue',m:'motiv-jue'},
+    {nom:'Viernes',  f:'fatiga-vie',b:'bloque-vie',m:'motiv-vie'}
+  ];
+  var cuerpo='REGISTRO SEMANAL — LIFT-FLOW\nSEMANA 3/4 · GEN 3/4\n\n';
+  dias.forEach(function(d){
+    var f=document.getElementById(d.f).value||'—';
+    var b=document.getElementById(d.b).value||'—';
+    var m=document.getElementById(d.m).value||'—';
+    cuerpo+=d.nom+'\n  Fatiga: '+f+'/10\n  Bloque mayor fatiga: '+b+'\n  Motivación: '+m+'/10\n\n';
+  });
+  var asunto='Registro Semanal LIFT-FLOW · Semana 3/4 Gen 3/4';
+  window.location.href='mailto:liftflow360@gmail.com?subject='+encodeURIComponent(asunto)+'&body='+encodeURIComponent(cuerpo);
 }
 </script>
 </body>
